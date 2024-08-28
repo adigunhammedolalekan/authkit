@@ -4,5 +4,4 @@ public record AuthManagerConfig(
         DatabaseConfig databaseConfig,
 
         TokenConfig tokenConfig
-) {
-}
+) {}

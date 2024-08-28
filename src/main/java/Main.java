@@ -55,7 +55,10 @@ public class Main {
     public static void main(String[] args) {
 
         var config = new AuthManagerConfig(
-                new DatabaseConfig("jdbc:postgresql://localhost:5432/server", "postgres", "56d0921d-bc1b-41a2-992d-2f3955445dc9"),
+                new DatabaseConfig(
+                        "jdbc:postgresql://localhost:5432/server",
+                        "postgres",
+                        "56d0921d-bc1b-41a2-992d-2f3955445dc9"),
                 new TokenConfig(
                         "Zave",
                         "Zave User",

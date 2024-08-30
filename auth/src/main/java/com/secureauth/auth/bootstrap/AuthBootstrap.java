@@ -35,24 +35,19 @@ public class AuthBootstrap {
 
     public AuthManager create() {
         try {
-            var connection = getConnection(config.databaseConfig());
-            var databaseManager = new DatabaseManager(connection);
+            var dataSource = getDataSource(config.databaseConfig());
+            var databaseManager = new DatabaseManager(dataSource);
             new DatabaseMigrator(databaseManager)
                     .migrate();
             var repository = new RepositoryImpl(databaseManager);
             var tokenService = new JwtTokenService(config.tokenConfig());
             return new AuthManagerImpl(repository, tokenService);
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException | SQLException e) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             throw new AuthException("Error creating AuthManager " + e.getMessage());
         }
     }
 
-    private Connection getConnection(DatabaseConfig config) throws SQLException {
-        return getHikariDataSource(config)
-                .getConnection();
-    }
-
-    private HikariDataSource getHikariDataSource(DatabaseConfig databaseConfig) {
+    private HikariDataSource getDataSource(DatabaseConfig databaseConfig) {
         var config = new HikariConfig();
         config.setJdbcUrl(databaseConfig.dsn());
         config.setUsername(databaseConfig.username());

@@ -1,5 +1,6 @@
 package com.secureauth.auth.database;
 
+import com.zaxxer.hikari.HikariDataSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +19,9 @@ import static org.mockito.Mockito.*;
 public class DatabaseManagerTest {
 
     @Mock
+    HikariDataSource dataSource;
+
+    @Mock
     Connection connection;
 
     @Mock
@@ -30,11 +34,12 @@ public class DatabaseManagerTest {
 
     @BeforeEach
     void setUp() {
-        databaseManager = new DatabaseManager(connection);
+        databaseManager = new DatabaseManager(dataSource);
     }
 
     @Test
     void execute_update_test() throws SQLException {
+        when(dataSource.getConnection()).thenReturn(connection);
         when(connection.createStatement()).thenReturn(statement);
 
         databaseManager.executeUpdate(Queries.CREATE_USER);

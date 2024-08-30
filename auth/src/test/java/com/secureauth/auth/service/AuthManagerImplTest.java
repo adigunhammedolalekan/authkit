@@ -49,7 +49,7 @@ public class AuthManagerImplTest {
         var user = authManager.signUp(TESTEMAIL, TESTPASSWORD);
 
         var argumentCaptor = ArgumentCaptor.forClass(User.class);
-        verify(authRepository).save(argumentCaptor.capture());
+        verify(authRepository).saveUser(argumentCaptor.capture());
 
         var savedUser = argumentCaptor.getValue();
         assertThat(savedUser)

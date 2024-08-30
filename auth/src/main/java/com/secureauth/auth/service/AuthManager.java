@@ -1,6 +1,7 @@
 package com.secureauth.auth.service;
 
 
+import com.secureauth.auth.types.PasswordResetToken;
 import com.secureauth.auth.types.Token;
 import com.secureauth.auth.types.User;
 
@@ -15,5 +16,9 @@ public interface AuthManager {
 
     void changePassword(UUID userId, String oldPassword, String newPassword);
 
-    void forgotPassword(String email);
+    PasswordResetToken resetPassword(String email);
+
+    void confirmPasswordReset(String email, String token, String newPassword);
+
+    Token refreshToken(String token);
 }

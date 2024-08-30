@@ -81,7 +81,8 @@ public class RepositoryImpl implements Repository {
             statement.setObject(1, token.id());
             statement.setObject(2, token.userId());
             statement.setString(3, token.token());
-            statement.setTimestamp(4, Timestamp.valueOf(token.expiresAt().toString()));
+            statement.setTimestamp(4, new Timestamp(token.expiresAt().getTime()));
+            statement.executeUpdate();
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }

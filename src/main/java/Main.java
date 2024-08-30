@@ -58,7 +58,8 @@ public class Main {
                 new DatabaseConfig(
                         "jdbc:postgresql://localhost:5432/server",
                         "postgres",
-                        "56d0921d-bc1b-41a2-992d-2f3955445dc9"),
+                        "56d0921d-bc1b-41a2-992d-2f3955445dc9",
+                        5),
                 new TokenConfig(
                         "Zave",
                         "Zave User",
@@ -81,5 +82,20 @@ public class Main {
 
         var authenticatedUser = authManager.me(authToken.accessToken());
         System.out.println(authenticatedUser);
+
+        var newPassword = "$newVERYstrongPASSWORD002";
+        authManager.changePassword(newUser.id(), password, newPassword);
+
+        var newAuthToken = authManager.login(email, newPassword);
+        System.out.println(newAuthToken);
+
+        var passwordResetToken = authManager.resetPassword(email);
+        System.out.println(passwordResetToken);
+
+        var newPasswordAfterReset = "$$$resetPASSWORD123";
+        authManager.confirmPasswordReset(email, passwordResetToken.token(), newPasswordAfterReset);
+
+        var authTokenAfterReset = authManager.login(email, newPasswordAfterReset);
+        System.out.println(authTokenAfterReset);
     }
 }

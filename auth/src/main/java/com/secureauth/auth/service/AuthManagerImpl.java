@@ -110,7 +110,7 @@ public class AuthManagerImpl implements AuthManager {
         var resetToken = repository.findPasswordResetToken(token)
                 .orElseThrow(() -> new AuthException("password reset token is invalid"));
 
-        if (resetToken.expiresAt().after(Date.from(Instant.now()))) {
+        if (resetToken.expiresAt().after(new Date())) {
             throw new AuthException("password reset token is expired");
         }
 

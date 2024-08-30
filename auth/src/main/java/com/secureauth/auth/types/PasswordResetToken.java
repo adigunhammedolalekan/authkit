@@ -38,7 +38,7 @@ public record PasswordResetToken(
                 (UUID) result.getObject("user_id"),
                 result.getString("token"),
                 result.getDate("expires_at"),
-                result.getDate("created)at"),
+                result.getDate("created_at"),
                 result.getDate("updated_at"),
                 result.getDate("deleted_at"));
     }

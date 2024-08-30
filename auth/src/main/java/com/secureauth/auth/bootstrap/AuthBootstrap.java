@@ -9,6 +9,8 @@ import com.secureauth.auth.service.AuthManagerImpl;
 import com.secureauth.auth.service.JwtTokenService;
 import com.secureauth.auth.types.AuthManagerConfig;
 import com.secureauth.auth.types.DatabaseConfig;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -46,9 +48,17 @@ public class AuthBootstrap {
     }
 
     private Connection getConnection(DatabaseConfig config) throws SQLException {
-        return DriverManager.getConnection(
-                config.dsn(),
-                config.username(),
-                config.password());
+        return getHikariDataSource(config)
+                .getConnection();
+    }
+
+    private HikariDataSource getHikariDataSource(DatabaseConfig databaseConfig) {
+        var config = new HikariConfig();
+        config.setJdbcUrl(databaseConfig.dsn());
+        config.setUsername(databaseConfig.username());
+        config.setPassword(databaseConfig.password());
+        config.setMaximumPoolSize(databaseConfig.connectionPoolSize());
+
+        return new HikariDataSource(config);
     }
 }

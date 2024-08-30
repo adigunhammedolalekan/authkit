@@ -5,5 +5,13 @@ public record DatabaseConfig(
 
         String username,
 
-        String password
-) {}
+        String password,
+
+        int connectionPoolSize
+) {
+
+    @Override
+    public int connectionPoolSize() {
+        return connectionPoolSize == 0 ? 5 : connectionPoolSize;
+    }
+}

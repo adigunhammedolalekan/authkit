@@ -95,6 +95,21 @@ System.out.println(authToken);
 // find out the identity of a user using a token
 var authenticatedUser = authManager.me(authToken.accessToken());
 System.out.println(authenticatedUser);
+
+var newPassword = "$newVERYstrongPASSWORD002";
+authManager.changePassword(newUser.id(), newUser.password(), newPassword);
+
+var newAuthToken = authManager.login(email, newPassword);
+System.out.println(newAuthToken);
+
+var passwordResetToken = authManager.resetPassword(email);
+System.out.println(passwordResetToken);
+
+var newPasswordAfterReset = "$$$resetPASSWORD123";
+authManager.confirmPasswordReset(email, passwordResetToken.token(), newPasswordAfterReset);
+
+var authTokenAfterReset = authManager.login(email, newPasswordAfterReset);
+System.out.println(authTokenAfterReset);
 ```
 Passwords must satisfy the following conditions
 * must be at least 6 characters

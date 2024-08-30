@@ -50,7 +50,7 @@ public class Queries {
 
     public static final String INSERT_PASSWORD_RESET_TOKEN = """
             INSERT INTO password_reset_tokens (id, user_id, token, expires_at)
-            VALUES (?, ?, ?);
+            VALUES (?, ?, ?, ?);
             """;
 
     public static final String FIND_PASSWORD_RESET_TOKEN = """

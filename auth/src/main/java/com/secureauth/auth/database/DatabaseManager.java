@@ -19,10 +19,6 @@ public class DatabaseManager {
         connection.close();
     }
 
-    public PreparedStatement prepareStatement(String query) throws SQLException {
-        return this.dataSource.getConnection().prepareStatement(query);
-    }
-
     public Connection getConnection() throws SQLException {
         return this.dataSource.getConnection();
     }

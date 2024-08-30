@@ -47,14 +47,4 @@ public class DatabaseManagerTest {
         verify(statement, times(1))
                 .executeUpdate(Queries.CREATE_USER);
     }
-
-    @Test
-    void get_prepared_statement_test() throws SQLException {
-        when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
-
-        var result = databaseManager.prepareStatement(Queries.CREATE_USER);
-
-        assertEquals(result, preparedStatement);
-        verify(connection, times(1)).prepareStatement(Queries.CREATE_USER);
-    }
 }

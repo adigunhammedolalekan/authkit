@@ -119,5 +119,18 @@ Passwords must satisfy the following conditions
 * must contain a digit (0-9)
 
 
+#### Note on password reset steps
+To reset a user's password, you can utilize the library to generate and verify a password reset token. After generating the token, it should be sent to the user via email or text message for verification. Once the token is confirmed, you can proceed to update the user's password. Sample below
+```java
+var passwordResetToken = authManager.resetPassword(email);
+System.out.println(passwordResetToken);
+
+var newPasswordAfterReset = "$$$resetPASSWORD123";
+authManager.confirmPasswordReset(email, passwordResetToken.token(), newPasswordAfterReset);
+
+var authTokenAfterReset = authManager.login(email, newPasswordAfterReset);
+System.out.println(authTokenAfterReset);
+```
+
 #### Contact
 You can reach out to me at `adigunhammed.lekan@gmail.com` or on X `@adxgun` if you have any questions

@@ -1,9 +1,10 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
-group = 'com.secureauth'
-version = '1.0-SNAPSHOT'
+group = 'com.secureauth.authkit'
+version = 'v1.0.0'
 
 repositories {
     mavenCentral()
@@ -23,4 +24,18 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            name = "authkit"
+            url = layout.buildDirectory.dir("publishing-repository")
+        }
+    }
 }

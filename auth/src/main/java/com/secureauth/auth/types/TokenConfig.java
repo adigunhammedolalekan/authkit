@@ -3,8 +3,6 @@ package com.secureauth.auth.types;
 public record TokenConfig(
         String issuer,
 
-        String subject,
-
         long tokenExpirationInMinutes,
 
         long refreshTokenExpirationInMinutes,

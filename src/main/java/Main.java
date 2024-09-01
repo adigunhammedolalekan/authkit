@@ -62,7 +62,6 @@ public class Main {
                         5),
                 new TokenConfig(
                         "Zave",
-                        "Zave User",
                         5,
                         50,
                         PUBLIC_KEY,

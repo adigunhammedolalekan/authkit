@@ -58,11 +58,11 @@ public class JwtTokenService implements TokenService {
         return User.of(userId);
     }
 
-    private String generateToken(String claim, Date expiresAt) {
+    private String generateToken(String userId, Date expiresAt) {
         return JWT.create()
                 .withIssuer(config.issuer())
-                .withSubject(config.subject())
-                .withClaim(CLAIM_KEY, claim)
+                .withSubject(userId)
+                .withClaim(CLAIM_KEY, userId)
                 .withExpiresAt(expiresAt)
                 .sign(Algorithm.RSA256(null, privateKey));
     }

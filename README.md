@@ -41,13 +41,13 @@ public record DatabaseConfig(
 
         String username,
 
-        String password
+        String password,
+
+        int connectionPoolSize
 ) {}
 
 public record TokenConfig(
         String issuer,
-
-        String subject,
 
         long tokenExpirationInMinutes,
 
@@ -65,11 +65,11 @@ var config = new AuthManagerConfig(
         new DatabaseConfig(
                 "jdbc:postgresql://localhost:5432/server", // dsn
                 "postgres", // username
-                "56d0921d-bc1b-41a2-992d-2f3955445dc9" // password
+                "56d0921d-bc1b-41a2-992d-2f3955445dc9", // password,
+                5
         ),
         new TokenConfig(
                 "IsserName", // issuer
-                "Subject", // Token Subject
                 5, // token expiration time(in mins)
                 50, // refresh-token expiration time(in mins)
                 PUBLIC_KEY, // RSA public key

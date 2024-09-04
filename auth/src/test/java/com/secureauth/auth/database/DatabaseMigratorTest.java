@@ -1,5 +1,8 @@
 package com.secureauth.auth.database;
 
+import io.github.adigunhammedolalekan.authkit.database.DatabaseManager;
+import io.github.adigunhammedolalekan.authkit.database.DatabaseMigrator;
+import io.github.adigunhammedolalekan.authkit.database.Queries;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

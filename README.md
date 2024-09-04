@@ -134,3 +134,9 @@ System.out.println(authTokenAfterReset);
 
 #### Contact
 You can reach out to me at `adigunhammed.lekan@gmail.com` or on X `@adxgun` if you have any questions
+
+<server>
+	<id>${server}</id>
+	<username>bN6ZtxW7</username>
+	<password>mjQEn4JjVssr5/7PbpsGTzllokvOwQ5zvFWiXLSUUBsn</password>
+</server>

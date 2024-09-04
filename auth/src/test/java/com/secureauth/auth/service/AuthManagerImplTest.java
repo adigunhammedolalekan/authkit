@@ -1,10 +1,14 @@
 package com.secureauth.auth.service;
 
-import com.secureauth.auth.exception.AuthException;
-import com.secureauth.auth.helper.Emails;
-import com.secureauth.auth.helper.PasswordValidator;
-import com.secureauth.auth.repository.Repository;
-import com.secureauth.auth.types.User;
+import io.github.adigunhammedolalekan.authkit.exception.AuthException;
+import io.github.adigunhammedolalekan.authkit.helper.Emails;
+import io.github.adigunhammedolalekan.authkit.helper.PasswordValidator;
+import io.github.adigunhammedolalekan.authkit.repository.Repository;
+import io.github.adigunhammedolalekan.authkit.service.AuthManager;
+import io.github.adigunhammedolalekan.authkit.service.AuthManagerImpl;
+import io.github.adigunhammedolalekan.authkit.service.ThirdPartyAuthProvider;
+import io.github.adigunhammedolalekan.authkit.service.TokenService;
+import io.github.adigunhammedolalekan.authkit.types.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,11 +36,14 @@ public class AuthManagerImplTest {
     @Mock
     private TokenService tokenService;
 
+    @Mock
+    private ThirdPartyAuthProvider thirdPartyAuthProvider;
+
     private AuthManager authManager;
 
     @BeforeEach
     protected void setUp() {
-        authManager = new AuthManagerImpl(authRepository, tokenService);
+        authManager = new AuthManagerImpl(authRepository, tokenService, thirdPartyAuthProvider);
     }
 
     @Test

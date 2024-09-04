@@ -37,4 +37,16 @@ public record ThirdPartyAuthConfig(
     public record Apple(
 
     ) {}
+
+    public static Google google(String clientId, String clientSecret, String redirectURI) {
+        return new Google(clientId, clientSecret, redirectURI);
+    }
+
+    public static Facebook facebook(String clientId, String clientSecret, String redirectURI) {
+        return new Facebook(clientId, clientSecret, redirectURI);
+    }
+
+    public static Twitter twitter(String clientId, String clientSecret, String redirectURI) {
+        return new Twitter(clientId, clientSecret, redirectURI);
+    }
 }

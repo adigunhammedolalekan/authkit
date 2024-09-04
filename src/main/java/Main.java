@@ -1,7 +1,9 @@
-import com.secureauth.auth.bootstrap.AuthBootstrap;
-import com.secureauth.auth.types.AuthManagerConfig;
-import com.secureauth.auth.types.DatabaseConfig;
-import com.secureauth.auth.types.TokenConfig;
+
+import io.github.adigunhammedolalekan.authkit.bootstrap.AuthBootstrap;
+import io.github.adigunhammedolalekan.authkit.types.AuthManagerConfig;
+import io.github.adigunhammedolalekan.authkit.types.DatabaseConfig;
+import io.github.adigunhammedolalekan.authkit.types.ThirdPartyAuthConfig;
+import io.github.adigunhammedolalekan.authkit.types.TokenConfig;
 
 import java.util.UUID;
 
@@ -54,6 +56,24 @@ public class Main {
 
     public static void main(String[] args) {
 
+        var thirdPartyAuthConfig = new ThirdPartyAuthConfig(
+                ThirdPartyAuthConfig.google(
+                        "clientId",
+                        "clientSecret",
+                        "https://redirect.uri"
+                ),
+                ThirdPartyAuthConfig.facebook(
+                        "clientId",
+                        "clientSecret",
+                        "https://redirect.uri"
+                ),
+                ThirdPartyAuthConfig.twitter(
+                        "clientId",
+                        "clientSecret",
+                        "https://redirect.uri"
+                ),
+                null
+        );
         var config = new AuthManagerConfig(
                 new DatabaseConfig(
                         "jdbc:postgresql://localhost:5432/server",
@@ -65,8 +85,8 @@ public class Main {
                         5,
                         50,
                         PUBLIC_KEY,
-                        PRIVATE_KEY
-                ));
+                        PRIVATE_KEY),
+                thirdPartyAuthConfig);
         var authManager = AuthBootstrap.config(config)
                 .create();
 

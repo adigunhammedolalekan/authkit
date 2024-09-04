@@ -33,11 +33,50 @@ The DatabaseMigrator sets up the database tables, while the TokenService handles
 ### JWT
 This library uses JSON Web Tokens (JWT) for authentication. JWTs are widely recognized, with a strong ecosystem use and for their support in microservices environments and setups. The tokens are generated and validated using asymmetric keys, and you can customize the configuration as shown in the sample section below.
 
+### Third-Party authentication config
+To enable third-party authentication, which currently supports Google, Facebook, Twitter, and Apple, you need to provide the OAuth configuration parameters for each provider. Once these parameters are configured, you can perform the initial step of the OAuth flow to retrieve the client's authorization code (this step occurs outside the scope of this library). After obtaining the authorization code, you can authenticate the user's account using the following process:
+
+* **Existing Account with Different Provider or Password:** If the account's email already exists in the system but was registered using a different provider or a password, an error will be thrown to indicate this conflict.
+
+* **New Account:** If the account does not exist in the system, the user will be automatically signed up, and an authentication Token will be returned.
+
+* **Existing Account with Same Provider:** If the account has already been signed up using the same provider, the account information will be updated, and a Token will be returned to the caller.
+```java
+var thirdPartyAuthConfig = new ThirdPartyAuthConfig(
+                ThirdPartyAuthConfig.google(
+                        "clientId",
+                        "clientSecret",
+                        "https://redirect.uri"
+                ),
+                ThirdPartyAuthConfig.facebook(
+                        "clientId",
+                        "clientSecret",
+                        "https://redirect.uri"
+                ),
+                ThirdPartyAuthConfig.twitter(
+                        "clientId",
+                        "clientSecret",
+                        "https://redirect.uri"
+                ),
+                null
+        );
+
+// Perform the first step in the oauth flow and retrieve the client's authorization_code
+// You can then use this code to authenticate the user
+// This will automatically sign up the user if it does not exists or simple update the user if it does exists
+// and a valid `Token` will be returned
+var token = authManager.thirdPartyAuthentication(ThirdPartyAuthProviderIdentity.GOOGLE, authorizationCode);
+
+```
+You can safely set any of the above value to `null` if you don't want to enable any third-party auth
+
 ```java
 public record AuthManagerConfig(
         DatabaseConfig databaseConfig,
 
-        TokenConfig tokenConfig
+        TokenConfig tokenConfig,
+
+        ThirdPartyAuthConfig thirdPartyAuthConfig
 ) {}
 
 

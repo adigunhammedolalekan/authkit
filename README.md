@@ -15,6 +15,11 @@ While working on multiple projects, you realize the need for a robust authentica
 
 This library is designed to meet those needs. It serves as a pluggable component for any Java project and potentially for projects in other languages as well. The goal is to keep it simple and easy to modify. It currently stores user authentication data in an SQL database, you can choose your preferred SQL database but PostgresSQL is recommended 
 
+### Installation
+```groovy
+implementation 'io.github.adigunhammedolalekan:authkit:v1.0.5'
+```
+
 ## How it works
 When you create an instance of AuthManager (as demonstrated below), the library constructs a dependency graph that automatically initializes all the necessary components, including:
 
@@ -134,9 +139,3 @@ System.out.println(authTokenAfterReset);
 
 #### Contact
 You can reach out to me at `adigunhammed.lekan@gmail.com` or on X `@adxgun` if you have any questions
-
-<server>
-	<id>${server}</id>
-	<username>bN6ZtxW7</username>
-	<password>mjQEn4JjVssr5/7PbpsGTzllokvOwQ5zvFWiXLSUUBsn</password>
-</server>

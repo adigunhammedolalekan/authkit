@@ -5,10 +5,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public record User(
         UUID id,
@@ -75,5 +72,11 @@ public record User(
         return Json.create(getAttributes());
     }
 
+    public Map<ThirdPartyAuthProviderIdentity, OauthUserInfo> getUserInfos() {
+        return getAttributes().authUserInfo();
+    }
 
+    public Optional<OauthUserInfo> getUserInfo(ThirdPartyAuthProviderIdentity authProvider) {
+        return Optional.ofNullable(getUserInfos().get(authProvider));
+    }
 }

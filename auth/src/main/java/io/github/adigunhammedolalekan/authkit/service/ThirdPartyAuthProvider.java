@@ -26,7 +26,7 @@ public class ThirdPartyAuthProvider {
         var credential = config.getCredential(providerIdentity);
         return switch (providerIdentity) {
             case GOOGLE -> new GoogleOauthIntegrationService(credential, apiService);
-            case TWITTER -> new XOauthIntegrationService(credential, apiService);
+            case X -> new XOauthIntegrationService(credential, apiService);
             case FACEBOOK -> new FacebookOauthIntegrationService(credential, apiService);
             case APPLE -> new AppleOauthIntegrationService(credential, apiService);
         };

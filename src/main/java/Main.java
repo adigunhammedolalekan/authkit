@@ -54,7 +54,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        var thirdPartyAuthConfig = new ThirdPartyAuthConfig(List.of(
+        var thirdPartyAuthConfig = ThirdPartyAuthConfig.of(
                     ThirdPartyAuthCredential.of(
                             ThirdPartyAuthProviderIdentity.GOOGLE,
                             "clientId",
@@ -68,7 +68,7 @@ public class Main {
                             "https://facebook.uri"
                     ),
                     ThirdPartyAuthCredential.of(
-                            ThirdPartyAuthProviderIdentity.TWITTER,
+                            ThirdPartyAuthProviderIdentity.X,
                             "clientId",
                             "clientSecret",
                             "https://twitter.uri"
@@ -78,8 +78,7 @@ public class Main {
                             "clientId",
                             "clientSecret",
                             "https://apple.uri"
-                    )
-                ));
+                    ));
         var config = new AuthManagerConfig(
                 new DatabaseConfig(
                         "jdbc:postgresql://localhost:5432/server",

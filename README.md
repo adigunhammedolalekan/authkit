@@ -42,10 +42,6 @@ To enable third-party authentication, which currently supports Google, Facebook,
 * **New Account:** If the account does not exist in the system, the user will be automatically signed up, and an authentication Token will be returned.
 
 * **Existing Account with Same Provider:** If the account has already been signed up using the same provider, the account information will be updated, and a Token will be returned to the caller.
-```java
-
-```
-You can safely set any of the above value to `null` if you don't want to enable any third-party auth
 
 ```java
 public record AuthManagerConfig(
@@ -96,28 +92,32 @@ public record ThirdPartyAuthCredential(
 As you can see from the above, it's very self-explanatory. You can configure the library using the following
 
 ```java
-var thirdPartyAuthConfig = new ThirdPartyAuthConfig(
-        ThirdPartyAuthConfig.google(
+// You can safely set any of the above value to `null` if you don't want to enable any third-party auth
+var thirdPartyAuthConfig = ThirdPartyAuthConfig.of(
+        ThirdPartyAuthCredential.of(
+                ThirdPartyAuthProviderIdentity.GOOGLE,
                 "clientId",
                 "clientSecret",
                 "https://redirect.uri"
         ),
-        ThirdPartyAuthConfig.facebook(
+        ThirdPartyAuthCredential.of(
+                ThirdPartyAuthProviderIdentity.FACEBOOK,
                 "clientId",
                 "clientSecret",
-                "https://redirect.uri"
+                "https://facebook.uri"
         ),
-        ThirdPartyAuthConfig.X(
+        ThirdPartyAuthCredential.of(
+                ThirdPartyAuthProviderIdentity.X,
                 "clientId",
                 "clientSecret",
-                "https://redirect.uri"
+                "https://twitter.uri"
         ),
-        ThirdPartyAuthConfig.Apple(
+        ThirdPartyAuthCredential.of(
+                ThirdPartyAuthProviderIdentity.APPLE,
                 "clientId",
                 "clientSecret",
-                "https://redirect.uri"
-        )
-);
+                "https://apple.uri"
+        ));
 var config = new AuthManagerConfig(
         new DatabaseConfig(
                 "jdbc:postgresql://localhost:5432/server", // dsn
@@ -169,10 +169,11 @@ authManager.confirmPasswordReset(email, passwordResetToken.token(), newPasswordA
 var authTokenAfterReset = authManager.login(email, newPasswordAfterReset);
 System.out.println(authTokenAfterReset);
 
+// ThirdParty auth: Apple, Facebook, Google and X
 // Perform the first step in the oauth flow and retrieve the client's authorization_code
 // You can then use this code to authenticate the user
-// This will automatically sign up the user if it does not exists or simple update the user if it does exists
-// and a valid `Token` will be returned
+// This will automatically sign up the user if it does not exists or update the user if it does exists
+// and a valid `AccessToken` will be returned
 var token = authManager.thirdPartyAuthentication(ThirdPartyAuthProviderIdentity.GOOGLE, authorizationCode);
 
 // retrieve the user and their info(from the third party provider)

@@ -27,6 +27,11 @@ public class AuthBootstrap {
         if (config == null) {
             throw new NullPointerException("config is null");
         }
+
+        if (!config.isValid()) {
+            throw new IllegalArgumentException("invalid config: please check values of databaseConfig, tokenConfig and thirdPartyAuthConfig");
+        }
+
         this.config = config;
     }
 

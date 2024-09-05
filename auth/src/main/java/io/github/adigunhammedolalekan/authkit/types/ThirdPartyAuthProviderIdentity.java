@@ -1,7 +1,5 @@
 package io.github.adigunhammedolalekan.authkit.types;
 
-import java.util.Base64;
-
 public enum ThirdPartyAuthProviderIdentity {
     GOOGLE,
 
@@ -9,7 +7,7 @@ public enum ThirdPartyAuthProviderIdentity {
 
     FACEBOOK,
 
-    TWITTER;
+    X;
 
     private static final String GOOGLE_OAUTH_USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
     private static final String GOOGLE_OAUTH_ACCESS_TOKEN_URL = "https://accounts.google.com/o/oauth2/token";
@@ -28,7 +26,7 @@ public enum ThirdPartyAuthProviderIdentity {
             case GOOGLE -> GOOGLE_OAUTH_ACCESS_TOKEN_URL;
             case APPLE -> APPLE_OAUTH_ACCESS_TOKEN_URL;
             case FACEBOOK -> FACEBOOK_OAUTH_ACCESS_TOKEN_URL;
-            case TWITTER -> TWITTER_OAUTH_ACCESS_TOKEN_URL;
+            case X -> TWITTER_OAUTH_ACCESS_TOKEN_URL;
         };
     }
 
@@ -37,7 +35,7 @@ public enum ThirdPartyAuthProviderIdentity {
             case GOOGLE -> GOOGLE_OAUTH_USER_INFO_URL;
             case APPLE -> "";
             case FACEBOOK -> FACEBOOK_OAUTH_USER_INFO_URL;
-            case TWITTER -> TWITTER_OAUTH_USER_INFO_URL;
+            case X -> TWITTER_OAUTH_USER_INFO_URL;
         };
     }
 }

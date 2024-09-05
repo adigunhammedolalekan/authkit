@@ -12,4 +12,8 @@ public record ThirdPartyAuthConfig(
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("auth credential not found for " + providerIdentity));
     }
+
+    public static ThirdPartyAuthConfig of(ThirdPartyAuthCredential...credentials) {
+        return new ThirdPartyAuthConfig(List.of(credentials));
+    }
 }

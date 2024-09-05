@@ -128,8 +128,8 @@ public class AuthManagerImpl implements AuthManager {
     @Override
     public Token thirdPartyAuthentication(ThirdPartyAuthProviderIdentity provider, String authorizationCode) {
         var integrationService = this.authProvider.getIntegrationService(provider);
-        var accessToken = integrationService.getAccessToken(authorizationCode);
-        var userInfo = integrationService.getUser(accessToken.accessToken());
+        var userInfo = integrationService.getUser(
+                integrationService.getAccessToken(authorizationCode));
 
         var user = repository.findByEmail(userInfo.email());
         if (user.isPresent() &&

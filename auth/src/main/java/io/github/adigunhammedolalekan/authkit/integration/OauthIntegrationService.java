@@ -6,5 +6,5 @@ import io.github.adigunhammedolalekan.authkit.types.OauthUserInfo;
 public interface OauthIntegrationService {
     AccessToken getAccessToken(String code);
 
-    OauthUserInfo getUser(String accessToken);
+    OauthUserInfo getUser(AccessToken accessToken);
 }

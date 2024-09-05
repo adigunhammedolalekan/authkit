@@ -4,7 +4,7 @@ import io.github.adigunhammedolalekan.authkit.integration.APIService;
 import io.github.adigunhammedolalekan.authkit.integration.OauthIntegrationService;
 import io.github.adigunhammedolalekan.authkit.types.AccessToken;
 import io.github.adigunhammedolalekan.authkit.types.OauthUserInfo;
-import io.github.adigunhammedolalekan.authkit.types.ThirdPartyAuthConfig;
+import io.github.adigunhammedolalekan.authkit.types.ThirdPartyAuthCredential;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,14 +16,14 @@ public class GoogleOauthIntegrationService implements OauthIntegrationService {
     private static final String GOOGLE_OAUTH_ACCESS_TOKEN_URL = "https://accounts.google.com/o/oauth2/token";
 
     private final APIService apiService;
-    private final ThirdPartyAuthConfig.Google config;
+    private final ThirdPartyAuthCredential credential;
 
     private final Logger LOGGER = LoggerFactory.getLogger(GoogleOauthIntegrationService.class);
 
     public GoogleOauthIntegrationService(
-            ThirdPartyAuthConfig.Google config,
+            ThirdPartyAuthCredential credential,
             APIService apiService) {
-        this.config = config;
+        this.credential = credential;
         this.apiService = apiService;
     }
 
@@ -31,10 +31,10 @@ public class GoogleOauthIntegrationService implements OauthIntegrationService {
     public AccessToken getAccessToken(String code) {
         var body = Map.of(
                 "code", code,
-                "client_id", config.clientId(),
-                "client_secret", config.clientSecret(),
+                "client_id", credential.clientId(),
+                "client_secret", credential.clientSecret(),
                 "grant_type", "authorization_code",
-                "redirect_uri", config.redirectURI());
+                "redirect_uri", credential.redirectUri());
 
         try {
             return apiService.post(GOOGLE_OAUTH_ACCESS_TOKEN_URL, body, AccessToken.class, "Content-Type", "application/x-www-form-urlencoded");
@@ -45,9 +45,9 @@ public class GoogleOauthIntegrationService implements OauthIntegrationService {
     }
 
     @Override
-    public OauthUserInfo getUser(String accessToken) {
+    public OauthUserInfo getUser(AccessToken accessToken) {
         try {
-            var params = Map.of("access_token", accessToken);
+            var params = Map.of("access_token", accessToken.accessToken());
             var info = apiService.getWithParams(
                     GOOGLE_OAUTH_USER_INFO_URL,
                     params, GoogleOauthUser.class);

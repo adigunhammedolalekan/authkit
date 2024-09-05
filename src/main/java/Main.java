@@ -1,10 +1,8 @@
 
 import io.github.adigunhammedolalekan.authkit.bootstrap.AuthBootstrap;
-import io.github.adigunhammedolalekan.authkit.types.AuthManagerConfig;
-import io.github.adigunhammedolalekan.authkit.types.DatabaseConfig;
-import io.github.adigunhammedolalekan.authkit.types.ThirdPartyAuthConfig;
-import io.github.adigunhammedolalekan.authkit.types.TokenConfig;
+import io.github.adigunhammedolalekan.authkit.types.*;
 
+import java.util.List;
 import java.util.UUID;
 
 public class Main {
@@ -56,24 +54,32 @@ public class Main {
 
     public static void main(String[] args) {
 
-        var thirdPartyAuthConfig = new ThirdPartyAuthConfig(
-                ThirdPartyAuthConfig.google(
-                        "clientId",
-                        "clientSecret",
-                        "https://redirect.uri"
-                ),
-                ThirdPartyAuthConfig.facebook(
-                        "clientId",
-                        "clientSecret",
-                        "https://redirect.uri"
-                ),
-                ThirdPartyAuthConfig.twitter(
-                        "clientId",
-                        "clientSecret",
-                        "https://redirect.uri"
-                ),
-                null
-        );
+        var thirdPartyAuthConfig = new ThirdPartyAuthConfig(List.of(
+                    ThirdPartyAuthCredential.of(
+                            ThirdPartyAuthProviderIdentity.GOOGLE,
+                            "clientId",
+                            "clientSecret",
+                            "https://redirect.uri"
+                    ),
+                    ThirdPartyAuthCredential.of(
+                            ThirdPartyAuthProviderIdentity.FACEBOOK,
+                            "clientId",
+                            "clientSecret",
+                            "https://facebook.uri"
+                    ),
+                    ThirdPartyAuthCredential.of(
+                            ThirdPartyAuthProviderIdentity.TWITTER,
+                            "clientId",
+                            "clientSecret",
+                            "https://twitter.uri"
+                    ),
+                    ThirdPartyAuthCredential.of(
+                            ThirdPartyAuthProviderIdentity.APPLE,
+                            "clientId",
+                            "clientSecret",
+                            "https://apple.uri"
+                    )
+                ));
         var config = new AuthManagerConfig(
                 new DatabaseConfig(
                         "jdbc:postgresql://localhost:5432/server",

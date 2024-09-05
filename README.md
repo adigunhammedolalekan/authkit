@@ -27,6 +27,7 @@ When you create an instance of AuthManager (as demonstrated below), the library 
 * DatabaseMigrator
 * Repository
 * TokenService
+* ThirdPartyAuthProvider
 
 The DatabaseMigrator sets up the database tables, while the TokenService handles the generation and validation of JWT tokens.
 
@@ -42,30 +43,6 @@ To enable third-party authentication, which currently supports Google, Facebook,
 
 * **Existing Account with Same Provider:** If the account has already been signed up using the same provider, the account information will be updated, and a Token will be returned to the caller.
 ```java
-var thirdPartyAuthConfig = new ThirdPartyAuthConfig(
-                ThirdPartyAuthConfig.google(
-                        "clientId",
-                        "clientSecret",
-                        "https://redirect.uri"
-                ),
-                ThirdPartyAuthConfig.facebook(
-                        "clientId",
-                        "clientSecret",
-                        "https://redirect.uri"
-                ),
-                ThirdPartyAuthConfig.twitter(
-                        "clientId",
-                        "clientSecret",
-                        "https://redirect.uri"
-                ),
-                null
-        );
-
-// Perform the first step in the oauth flow and retrieve the client's authorization_code
-// You can then use this code to authenticate the user
-// This will automatically sign up the user if it does not exists or simple update the user if it does exists
-// and a valid `Token` will be returned
-var token = authManager.thirdPartyAuthentication(ThirdPartyAuthProviderIdentity.GOOGLE, authorizationCode);
 
 ```
 You can safely set any of the above value to `null` if you don't want to enable any third-party auth
@@ -101,10 +78,46 @@ public record TokenConfig(
 
         String tokenPrivateKey
 ) {}
+
+public record ThirdPartyAuthConfig(
+        List<ThirdPartyAuthCredential> credentials
+) {}
+
+public record ThirdPartyAuthCredential(
+        ThirdPartyAuthProviderIdentity identity,
+
+        String clientId,
+
+        String clientSecret,
+
+        String redirectUri
+) {}
 ```
 As you can see from the above, it's very self-explanatory. You can configure the library using the following
 
 ```java
+var thirdPartyAuthConfig = new ThirdPartyAuthConfig(
+        ThirdPartyAuthConfig.google(
+                "clientId",
+                "clientSecret",
+                "https://redirect.uri"
+        ),
+        ThirdPartyAuthConfig.facebook(
+                "clientId",
+                "clientSecret",
+                "https://redirect.uri"
+        ),
+        ThirdPartyAuthConfig.X(
+                "clientId",
+                "clientSecret",
+                "https://redirect.uri"
+        ),
+        ThirdPartyAuthConfig.Apple(
+                "clientId",
+                "clientSecret",
+                "https://redirect.uri"
+        )
+);
 var config = new AuthManagerConfig(
         new DatabaseConfig(
                 "jdbc:postgresql://localhost:5432/server", // dsn
@@ -118,7 +131,8 @@ var config = new AuthManagerConfig(
                 50, // refresh-token expiration time(in mins)
                 PUBLIC_KEY, // RSA public key
                 PRIVATE_KEY // RSA private key
-        ));
+        ),
+        thirdPartyAuthConfig);
 
 // init the lib
 var authManager = 
@@ -154,8 +168,19 @@ authManager.confirmPasswordReset(email, passwordResetToken.token(), newPasswordA
 
 var authTokenAfterReset = authManager.login(email, newPasswordAfterReset);
 System.out.println(authTokenAfterReset);
+
+// Perform the first step in the oauth flow and retrieve the client's authorization_code
+// You can then use this code to authenticate the user
+// This will automatically sign up the user if it does not exists or simple update the user if it does exists
+// and a valid `Token` will be returned
+var token = authManager.thirdPartyAuthentication(ThirdPartyAuthProviderIdentity.GOOGLE, authorizationCode);
+
+// retrieve the user and their info(from the third party provider)
+var user = authManager.me(token.accessToken());
+var oauthUserInfo = user.getInfo(ThirdPartyAuthProviderIdentity.GOOGLE);
 ```
-Passwords must satisfy the following conditions
+
+#### **Passwords must satisfy the following conditions**
 * must be at least 6 characters
 * must contain a lowercase letter
 * must contain an uppercase letter

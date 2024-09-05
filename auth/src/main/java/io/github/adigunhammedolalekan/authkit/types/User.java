@@ -76,7 +76,7 @@ public record User(
         return getAttributes().authUserInfo();
     }
 
-    public Optional<OauthUserInfo> getUserInfo(ThirdPartyAuthProviderIdentity authProvider) {
+    public Optional<OauthUserInfo> getInfo(ThirdPartyAuthProviderIdentity authProvider) {
         return Optional.ofNullable(getUserInfos().get(authProvider));
     }
 }

@@ -2,6 +2,8 @@ package io.github.adigunhammedolalekan.authkit.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import io.github.adigunhammedolalekan.authkit.exception.AuthException;
 import io.github.adigunhammedolalekan.authkit.helper.Keys;
 import io.github.adigunhammedolalekan.authkit.types.Token;
 import io.github.adigunhammedolalekan.authkit.types.TokenConfig;
@@ -47,14 +49,24 @@ public class JwtTokenService implements TokenService {
 
     @Override
     public User validateToken(String token) {
-        var algorithm = Algorithm.RSA256(publicKey, null);  // Use RSA256 algorithm
+        var algorithm = Algorithm.RSA256(publicKey, null);
         var verifier = JWT.require(algorithm)
                 .withIssuer(config.issuer())
                 .build();
         var jwt = verifier.verify(token);
 
+        if (!verify(jwt)) {
+            throw new AuthException("Invalid JWT token");
+        }
+
         var userId = UUID.fromString(jwt.getClaim(CLAIM_KEY).asString());
         return User.of(userId);
+    }
+
+    @Override
+    public boolean verify(DecodedJWT token) {
+        return token.getIssuer().equals(config.issuer())
+                && token.getExpiresAt().after(new Date());
     }
 
     private String generateToken(String userId, Date expiresAt) {

@@ -74,7 +74,7 @@ public class AppleOauthIntegrationService implements OauthIntegrationService {
                 .build()
                 .verify(token);
 
-        if (decoded.getExpiresAt().before(new Date())) {
+        if (decoded.getExpiresAt().after(new Date())) {
             throw new AuthException("Expired Apple JWT token");
         }
 

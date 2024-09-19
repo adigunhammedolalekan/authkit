@@ -1,5 +1,6 @@
 package io.github.adigunhammedolalekan.authkit.integration;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -63,7 +65,7 @@ public class APIServiceImpl implements APIService {
                 headers);
     }
 
-    private <R, B> R makeRequest(
+    private <R> R makeRequest(
             HttpMethod method,
             String url,
             Map<String, String> body,
@@ -71,20 +73,36 @@ public class APIServiceImpl implements APIService {
             Map<String, String> queryParams,
             String...headers) throws ExecutionException, InterruptedException {
         var fullUrl = URI.create(url + mapToQueryString(queryParams));
-        var request = HttpRequest.newBuilder()
+        var requestBuilder = HttpRequest.newBuilder()
                 .uri(fullUrl)
                 .version(HttpClient.Version.HTTP_2)
                 .method(method.name(), HttpRequest.BodyPublishers.ofString(mapToQueryString(body)))
-                .header("Accept", "application/json")
-                .headers(headers)
-                .build();
+                .header("Accept", "application/json");
+        if (headers.length > 0) {
+            requestBuilder.headers(headers);
+        }
 
         LOGGER.info("Sending request: url={}, urlParams={}, responseType={}",
                 fullUrl, queryParams, responseType);
 
-        return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                .thenApply(responseBody -> MAPPER.convertValue(responseBody, responseType))
+        return httpClient.sendAsync(requestBuilder.build(), HttpResponse.BodyHandlers.ofString())
+                .thenApply(responseBody -> convertOrThrow(responseBody, responseType))
                 .get();
+    }
+
+    private <R> R convertOrThrow(HttpResponse<String> response, Class<R> clazz) {
+        if (!Arrays.asList(200, 201).contains(response.statusCode())) {
+            throw new RuntimeException(response.body());
+        }
+
+        var body = response.body();
+        LOGGER.info("Reading value from response body: {}", body);
+        try {
+            return MAPPER.readValue(body, clazz);
+        } catch (JsonProcessingException e) {
+            LOGGER.error(e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
     }
 
     private String mapToQueryString(Map<String, String> queryParams) {

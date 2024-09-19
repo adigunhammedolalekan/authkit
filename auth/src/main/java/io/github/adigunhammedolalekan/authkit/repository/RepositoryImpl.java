@@ -8,6 +8,8 @@ import io.github.adigunhammedolalekan.authkit.types.User;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,6 +28,8 @@ public class RepositoryImpl implements Repository {
                 statement.setObject(1, user.id());
                 statement.setString(2, user.email());
                 statement.setString(3, user.password());
+                statement.setString(4, user.authProvider());
+                statement.setString(5, user.getAttributesAsString());
                 statement.executeUpdate();
             }
         } catch (SQLException ex) {
@@ -124,5 +128,34 @@ public class RepositoryImpl implements Repository {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+    @Override
+    public void deleteUser(UUID id) {
+        try(var connection = manager.getConnection()) {
+            try(var statement = connection.prepareStatement(Queries.DELETE_USER)) {
+                statement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+                statement.setObject(2, id);
+                statement.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @Override
+    public List<User> getUsers() {
+        var users = new ArrayList<User>();
+        try(var connection = manager.getConnection()) {
+            try (var statement = connection.prepareStatement(Queries.FIND_ALL_USERS)) {
+                var result = statement.executeQuery();
+                while (result.next()) {
+                    users.add(User.fromResultSet(result));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return users;
     }
 }

@@ -12,9 +12,6 @@ import java.util.Map;
 
 public class GoogleOauthIntegrationService implements OauthIntegrationService {
 
-    private static final String GOOGLE_OAUTH_USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
-    private static final String GOOGLE_OAUTH_ACCESS_TOKEN_URL = "https://accounts.google.com/o/oauth2/token";
-
     private final APIService apiService;
     private final ThirdPartyAuthCredential credential;
 
@@ -37,7 +34,12 @@ public class GoogleOauthIntegrationService implements OauthIntegrationService {
                 "redirect_uri", credential.redirectUri());
 
         try {
-            return apiService.post(GOOGLE_OAUTH_ACCESS_TOKEN_URL, body, AccessToken.class, "Content-Type", "application/x-www-form-urlencoded");
+            return apiService.post(
+                    credential.identity().getRetrieveAccessTokenUrl(),
+                    body,
+                    AccessToken.class,
+                    "Content-Type",
+                    "application/x-www-form-urlencoded");
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             throw new RuntimeException(e);
@@ -49,7 +51,7 @@ public class GoogleOauthIntegrationService implements OauthIntegrationService {
         try {
             var params = Map.of("access_token", accessToken.accessToken());
             var info = apiService.getWithParams(
-                    GOOGLE_OAUTH_USER_INFO_URL,
+                    credential.identity().getUserInfoUrl(),
                     params, GoogleOauthUser.class);
             return OauthUserInfo.forGoogle(info);
         } catch (Exception e) {

@@ -1,28 +1,28 @@
 package io.github.adigunhammedolalekan.authkit.service;
 
 import io.github.adigunhammedolalekan.authkit.exception.AuthException;
-import io.github.adigunhammedolalekan.authkit.helper.Dates;
-import io.github.adigunhammedolalekan.authkit.helper.Emails;
-import io.github.adigunhammedolalekan.authkit.helper.PasswordValidator;
-import io.github.adigunhammedolalekan.authkit.helper.RandomToken;
+import io.github.adigunhammedolalekan.authkit.helper.*;
 import io.github.adigunhammedolalekan.authkit.repository.Repository;
 import io.github.adigunhammedolalekan.authkit.types.PasswordResetToken;
 import io.github.adigunhammedolalekan.authkit.types.ThirdPartyAuthProviderIdentity;
 import io.github.adigunhammedolalekan.authkit.types.Token;
 import io.github.adigunhammedolalekan.authkit.types.User;
 import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
-
-import static java.util.Objects.nonNull;
 
 public class AuthManagerImpl implements AuthManager {
 
     private final Repository repository;
     private final TokenService tokenService;
     private final ThirdPartyAuthProvider authProvider;
+
+    private final Logger LOGGER = LoggerFactory.getLogger(AuthManagerImpl.class);
 
     private static final int PASSWORD_RESET_TOKEN_EXPIRATION_IN_MINS = 15;
 
@@ -65,7 +65,6 @@ public class AuthManagerImpl implements AuthManager {
         }
 
         repository.updateLastLogin(user.id(), LocalDateTime.now());
-
         return tokenService.generateToken(user);
     }
 
@@ -126,15 +125,18 @@ public class AuthManagerImpl implements AuthManager {
     }
 
     @Override
+    public String getThirdPartyAuthorizationUrl(ThirdPartyAuthProviderIdentity providerIdentity) {
+        return authProvider.getAuthorizationUrl(providerIdentity);
+    }
+
+    @Override
     public Token thirdPartyAuthentication(ThirdPartyAuthProviderIdentity provider, String authorizationCode) {
         var integrationService = this.authProvider.getIntegrationService(provider);
         var userInfo = integrationService.getUser(
                 integrationService.getAccessToken(authorizationCode));
 
         var user = repository.findByEmail(userInfo.email());
-        if (user.isPresent() &&
-                nonNull(user.get().password()) &&
-                !user.get().password().isEmpty()) {
+        if (user.isPresent() && user.get().isSignedUpWithPassword()) {
             throw new AuthException(String.format("User with email %s already sign up with password", userInfo.email()));
         }
 
@@ -144,10 +146,20 @@ public class AuthManagerImpl implements AuthManager {
             return tokenService.generateToken(newUser);
         }
 
-        var attributes = user.get().getAttributes();
-        attributes.update(provider, userInfo);
+        user.get().updateAttributes(provider, userInfo);
 
-        repository.updateUserMetadata(user.get().id(), attributes.toString());
+        repository.updateLastLogin(user.get().id(), LocalDateTime.now());
+        repository.updateUserMetadata(user.get().id(), user.get().getAttributesAsString());
         return tokenService.generateToken(user.get());
+    }
+
+    @Override
+    public void deleteUser(UUID userId) {
+        repository.deleteUser(userId);
+    }
+
+    @Override
+    public List<User> getUsers() {
+        return repository.getUsers();
     }
 }

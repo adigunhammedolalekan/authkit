@@ -1,8 +1,8 @@
+package io.github.adigunhammedolalekan.authkitsample;
 
 import io.github.adigunhammedolalekan.authkit.bootstrap.AuthBootstrap;
 import io.github.adigunhammedolalekan.authkit.types.*;
 
-import java.util.List;
 import java.util.UUID;
 
 public class Main {
@@ -52,9 +52,9 @@ public class Main {
             -----END PUBLIC KEY-----
             """;
 
-    public static void main(String[] args) {
+    public static void main_(String[] args) {
 
-        var thirdPartyAuthConfig = ThirdPartyAuthConfig.of(
+        var thirdPartyAuthConfig = ThirdPartyAuthConfig.create(
                     ThirdPartyAuthCredential.of(
                             ThirdPartyAuthProviderIdentity.GOOGLE,
                             "clientId",

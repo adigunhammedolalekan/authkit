@@ -4,7 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="95848f6a-6ecd-44df-9988-b2f2d590fd2a" name="Changes" comment="" />
+    <list default="true" id="95848f6a-6ecd-44df-9988-b2f2d590fd2a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/auth/src/test/java/com/secureauth/auth/service/ThirdPartyAuthProviderTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/test/java/com/secureauth/auth/util/TestDataUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/adigunhammedolalekan/authkitsample/SpringApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/adigunhammedolalekan/authkitsample/api/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/adigunhammedolalekan/authkitsample/config/AuthConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/adigunhammedolalekan/authkitsample/errorhandler/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/adigunhammedolalekan/authkitsample/errorhandler/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/adigunhammedolalekan/authkitsample/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/adigunhammedolalekan/authkitsample/types/AuthenticateAccountRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/adigunhammedolalekan/authkitsample/types/CreateAccountRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/01f16805-a8a9-4834-917b-6caa5085e15f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/01f16805-a8a9-4834-917b-6caa5085e15f.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/01f16805-a8a9-4834-917b-6caa5085e15f/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/01f16805-a8a9-4834-917b-6caa5085e15f/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/database/Queries.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/database/Queries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/helper/Dates.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/helper/Dates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/helper/Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/helper/Json.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/helper/PasswordValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/helper/PasswordValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/helper/RandomToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/helper/RandomToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/integration/APIServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/integration/APIServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/integration/apple/AppleOauthIntegrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/integration/apple/AppleOauthIntegrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/integration/google/GoogleOauthIntegrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/integration/google/GoogleOauthIntegrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/integration/google/GoogleOauthUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/integration/google/GoogleOauthUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/repository/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/repository/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/repository/RepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/repository/RepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/service/AuthManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/service/AuthManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/service/AuthManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/service/AuthManagerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/service/JwtTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/service/JwtTokenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/service/ThirdPartyAuthProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/service/ThirdPartyAuthProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/service/TokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/service/TokenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/types/ThirdPartyAuthConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/types/ThirdPartyAuthConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/types/ThirdPartyAuthProviderIdentity.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/types/ThirdPartyAuthProviderIdentity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/types/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/types/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/types/UserAttributes.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/types/UserAttributes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/adigunhammedolalekan/authkitsample/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,28 +52,247 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+    <projectState path="$PROJECT_DIR$/auth">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/auth">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/auth/test">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="auth" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="authsample" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="authsample" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="authsample" type="f1a62948:ProjectNode" />
+                <item name="auth" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="authsample" type="f1a62948:ProjectNode" />
+                <item name="auth" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="authsample" type="f1a62948:ProjectNode" />
+                <item name="auth" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="publish to sonatype central" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Record" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2l8jj1ceF7OuK2qUTpnJ71P8JFl" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build auth.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build authsample.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DatabaseManagerTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DatabaseManagerTest.execute_update_test (1).executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DatabaseManagerTest.execute_update_test.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DatabaseManagerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DatabaseMigratorTest.migrate_test.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.auth [getDeploymentStatus].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.auth [publishToSonatype].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.authsample [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.authsample [publishToSonatype].executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DatabaseManagerTest.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.SpringApp.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/lekanadigun/Documents/authsample/auth/src/main/java/io/github/adigunhammedolalekan/authkit/integration&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ],
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;TEXT&quot;
+    ]
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/auth/src/main/java/io/github/adigunhammedolalekan/authkit/integration" />
+      <recent name="$PROJECT_DIR$/auth/.keys" />
+      <recent name="$PROJECT_DIR$/auth" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="io.github.adigunhammedolalekan.authkitsample.errorhandler" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SpringApp">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.github.adigunhammedolalekan.authkitsample.Main" />
+      <module name="authsample.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="auth [getDeploymentStatus]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/auth" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="getDeploymentStatus" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="auth [publishToSonatype]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/auth" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publishToSonatype" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="authsample [publishToSonatype]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publishToSonatype" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SpringApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="AUTH_TOKEN_PRIVATE_KEY" value="             -----BEGIN PRIVATE KEY-----             MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDc09Qt2uxMLQOs             rVTFCW50y34pP15vZ/76XF8JUA5Gpds82mXqR+r/wleS3q/WmxhtB7jY2ZmYx0op             vd/0exZRw0m5RvCUWVba3JZ1I2nbUD5dNoe32nyc3y7bguYRhuW/dXG+2rfMs3T8             31r8LGZ3GfoFrtemPX0H6OEGibHeZX5+ayCJgRO9K/smhWgirdjPeaWY9DjOncPg             iAbRARXZui0+Tp9zpFArptIyfDYayTdW1Z4UfBI0OSD7QXY3Zff+CrQbKlS5wdV1             nQNuw4EGd5RQ1WOKmSRT8nlEz0K5M+3i1HLUxryezBTwMV9BBNhtMbxCKvGnXytM             Me3sdIrFAgMBAAECggEAHAYx7iPTSxOHXNmeYWcCAoZ0m010cZT0Ede5I9hqB2Mz             AHUC7Al2dEC4lmX2ULjcD7IkLjjnOjFIYyW6jy8ztOqgp4euLlVsJVhLK9BztaZo             U7IA5T8wA0R7kNX61oyVCYghCER/gNXhadn6lPgZhNHiHeiDa5BwFpniPM8qqHti             d9yirLteB76THMmVVuJKa5Yk7u95hrV7lebWFby6samPYwvDh6wm2nRvNDLHnVM7             ZiJ36fKfvJy+O2Sm5nH1vqZD0tf4bH6ZZiGJqSAdmq6eUyN8cdCc2TnPDc41J1fp             ENOWKerzWeRGrt0vZjRxiLmpBqjUMHnte7pWJMSPPQKBgQD5mERBf94jcQWI9+Kx             1ShQjCB6ITn0tqbGjQh7AIJ91h1sZbKIa0gSIaKR68ASF9T7CaOqW/txb2IBedAQ             khVWg251dSwPLsYJSMgcBrgO/0ZYFUg/Tp5F9kdTq6K5ZI/MNziJPha3WbVfxjtu             nE1pc0VLRQfYEahxviGIQlwfhwKBgQDifpKlvoAaR0StPQzWuxxoeIT0Rq6WBnNV             QPSaqebVYMbMN1jRNZ4A88jLQsPHqtWt3qLiMaMkeH2GvRlLct7MnTznSl3WGpK3             f8F86rbOzmVQvWN6UU8YDZ6Ucz6bEuxUX6dk0Uow4/Ubz97ogWK0CskFVxTqNFob             qZZTiBeeUwKBgQDpkZ1mMhOd1PlaCKcCxbeZUNhfkdJbd8WwDnC+Mmbq/UDBnJWq             5cIm/YTVyukNxXGQjp+zH6q4p4PuX6DesOX49LucfU8C0kGOlKZ2267IkgixCxF1             9MtWKzbqTLbViQ6sC40Dma/GWtPJUYdyZiBnKvDQlEPX5gZckpFsorT05wKBgE6J             f0ZTwU3bapf7tGj9JsOfDtM5cy54fCOSy36Z7X4N+cE0a+rXgbtozTaWJxckSMXq             jmaKubxav4QqLAw6f8FJwKWe5tzoB/nzJd+v78XUUdNmaIkwipGXn2Zwc8QIEsTL             CltuKyC62vJS6UOMIfK2TrA4Wvs/PgObkZHTfgUbAoGAOD2hXQI+HLhwBl7ojykn             84oMUb9AdAuV9iuDoQ6kyH2Rv0Ket5rVf74zrDDZHI13TCYl8EIxEHkh4Uep3G8p             rttkwpl/A+lYWMAYE5apYDApUNfbgOmN/foHyZOuMyerb+2QMCuzIV2jeGpytUVR             Af4zM3NZMTRwlcN8RAmJ9ig=             -----END PRIVATE KEY-----" />
+        <env name="AUTH_TOKEN_PUBLIC_KEY" value="-----BEGIN PUBLIC KEY-----             MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3NPULdrsTC0DrK1UxQlu             dMt+KT9eb2f++lxfCVAORqXbPNpl6kfq/8JXkt6v1psYbQe42NmZmMdKKb3f9HsW             UcNJuUbwlFlW2tyWdSNp21A+XTaHt9p8nN8u24LmEYblv3Vxvtq3zLN0/N9a/Cxm             dxn6Ba7Xpj19B+jhBomx3mV+fmsgiYETvSv7JoVoIq3Yz3mlmPQ4zp3D4IgG0QEV             2botPk6fc6RQK6bSMnw2Gsk3VtWeFHwSNDkg+0F2N2X3/gq0GypUucHVdZ0DbsOB             BneUUNVjipkkU/J5RM9CuTPt4tRy1Ma8nswU8DFfQQTYbTG8Qirxp18rTDHt7HSK             xQIDAQAB             -----END PUBLIC KEY-----" />
+      </envs>
+      <module name="authsample.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="io.github.adigunhammedolalekan.authkitsample.SpringApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.github.adigunhammedolalekan.authkitsample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.auth [getDeploymentStatus]" />
+      <item itemvalue="Gradle.auth [publishToSonatype]" />
+      <item itemvalue="Gradle.authsample [publishToSonatype]" />
+      <item itemvalue="Spring Boot.SpringApp" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.SpringApp" />
+        <item itemvalue="Gradle.auth [getDeploymentStatus]" />
+        <item itemvalue="Gradle.auth [publishToSonatype]" />
+        <item itemvalue="Gradle.authsample [publishToSonatype]" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -52,6 +309,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1724568728425</updated>
+      <workItem from="1724568729444" duration="92175000" />
+      <workItem from="1725733439029" duration="6011000" />
     </task>
     <servers />
   </component>

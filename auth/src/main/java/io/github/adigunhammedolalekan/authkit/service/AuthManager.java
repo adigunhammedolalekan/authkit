@@ -6,6 +6,7 @@ import io.github.adigunhammedolalekan.authkit.types.ThirdPartyAuthProviderIdenti
 import io.github.adigunhammedolalekan.authkit.types.Token;
 import io.github.adigunhammedolalekan.authkit.types.User;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface AuthManager {
@@ -23,5 +24,11 @@ public interface AuthManager {
 
     Token refreshToken(String token);
 
+    String getThirdPartyAuthorizationUrl(ThirdPartyAuthProviderIdentity providerIdentity);
+
     Token thirdPartyAuthentication(ThirdPartyAuthProviderIdentity provider, String authorizationCode);
+
+    void deleteUser(UUID userId);
+
+    List<User> getUsers();
 }

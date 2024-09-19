@@ -2,6 +2,8 @@ package io.github.adigunhammedolalekan.authkit.helper;
 
 import java.util.regex.Pattern;
 
+import static java.util.Objects.isNull;
+
 public class PasswordValidator {
 
     private static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_\\-+=\\[\\]{}|\\\\:;\"'<>,.?/~`]).{1,}$";
@@ -11,7 +13,7 @@ public class PasswordValidator {
 
 
     public static boolean isValidPassword(String password) {
-        if (password == null || password.length() < 8) {
+        if (isNull(password) || password.length() < 8) {
             return false;
         }
         return Pattern.compile(PASSWORD_REGEX)

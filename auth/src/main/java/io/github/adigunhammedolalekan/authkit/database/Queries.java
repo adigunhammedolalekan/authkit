@@ -6,7 +6,7 @@ public class Queries {
     private static final String CREATE_AUTH_TABLE = """
             CREATE TABLE IF NOT EXISTS user_auth (
                 id UUID PRIMARY KEY,
-                email VARCHAR(255) UNIQUE NOT NULL,
+                email VARCHAR(255) NOT NULL,
                 password VARCHAR(255) NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -33,16 +33,16 @@ public class Queries {
             """;
 
     public static final String CREATE_USER = """
-            INSERT INTO user_auth (id, email, password)
-            VALUES (?, ?, ?);
+            INSERT INTO user_auth (id, email, password, auth_provider, attributes)
+            VALUES (?, ?, ?, ?, ?::jsonb);
             """;
 
     public static final String GET_USER_BY_ID = """
-            SELECT * FROM user_auth WHERE id = ?;
+            SELECT * FROM user_auth WHERE id = ? AND deleted_at IS NULL;
             """;
 
     public static final String GET_USER_BY_EMAIL = """
-            SELECT * FROM user_auth WHERE email = ?
+            SELECT * FROM user_auth WHERE email = ? AND deleted_at IS NULL;
             """;
 
     public static final String UPDATE_USER_LAST_LOGIN = """
@@ -59,15 +59,23 @@ public class Queries {
             """;
 
     public static final String FIND_PASSWORD_RESET_TOKEN = """
-            SELECT * FROM password_reset_tokens WHERE token = ?;
+            SELECT * FROM password_reset_tokens WHERE token = ? AND deleted_at IS NULL;
             """;
 
     public static final String UPDATE_USER_META = """
-            UPDATE user_auth SET attributes = ? WHERE id = ?;
+            UPDATE user_auth SET attributes = ?::jsonb WHERE id = ?;
             """;
 
     public static final String UPDATE_USER_AUTH_PROVIDER = """
             UPDATE user_auth SET auth_provider = ? WHERE id = ?;
+            """;
+
+    public static final String DELETE_USER = """
+            UPDATE user_auth SET deleted_at = ? WHERE id = ?;
+            """;
+
+    public static final String FIND_ALL_USERS = """
+            SELECT * FROM user_auth WHERE deleted_at IS NULL;
             """;
 
     public static final List<String> MIGRATIONS = List.of(

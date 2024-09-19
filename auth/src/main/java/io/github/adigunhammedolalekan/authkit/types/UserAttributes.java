@@ -1,12 +1,12 @@
 package io.github.adigunhammedolalekan.authkit.types;
 
-import io.github.adigunhammedolalekan.authkit.helper.Json;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Map;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public record UserAttributes(
         Map<ThirdPartyAuthProviderIdentity, OauthUserInfo> authUserInfo
 ) {
@@ -25,17 +25,5 @@ public record UserAttributes(
 
     public void update(ThirdPartyAuthProviderIdentity providerIdentity, OauthUserInfo oauthUserInfo) {
         authUserInfo.put(providerIdentity, oauthUserInfo);
-    }
-
-    @Override
-    public String toString() {
-        if (isNull(authUserInfo)) {
-            return "{}";
-        }
-        try {
-            return Json.create(authUserInfo);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 }
